@@ -1,0 +1,7 @@
+:root{
+    --primary-bg: #000000,
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
