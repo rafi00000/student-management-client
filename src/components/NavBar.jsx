@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { FaList } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const NavBar = () => {
+  const {user, logOut} = useContext(AuthContext);
+
   const navItems = (
     <>
       <li>
@@ -50,27 +54,31 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
         {/* avatar here */}
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="" alt="" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
+    {
+      user ? <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img src={user?.photoUrl || ""} alt="" className="rounded-full" />
         </div>
+      </label>
+      <ul
+        tabIndex={0}
+        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-72 space-y-2"
+      >
+        <p className="text-center text-xl font-bold">{user?.displayName || "no name"}</p>
+        <li>
+          <a>Dashboard</a>
+        </li>
+        <li onClick={logOut}>
+          <a>Logout</a>
+        </li>
+      </ul>
+    </div> : 
+    <div>
+      <Link to={'/login'}><button className="btn btn-sm btn-outline">Login</button></Link>
+    </div>
+    }
+        
       </div>
     </div>
   );

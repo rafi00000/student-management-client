@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const LoginPage = () => {
-
+    const {user, logIn} = useContext(AuthContext)
+    const location = useLocation();
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -9,11 +12,20 @@ const LoginPage = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        logIn(email, password)
+        .then(data =>{
+            console.log(data);
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
     }
     
     return (
         <div>
-            <form className="w-3/4 lg:w-1/2 mx-auto space-y-3 border border-black mt-6 p-5 rounded-md" onSubmit={handleSubmit}>
+            <form className="w-3/4 lg:w-1/3 mx-auto space-y-3 border border-black mt-6 p-5 rounded-md" onSubmit={handleSubmit}>
             <p className="text-4xl font-mono font-bold text-center">Login page</p>
                 <div className="form-control">
                     <label>Email</label>
