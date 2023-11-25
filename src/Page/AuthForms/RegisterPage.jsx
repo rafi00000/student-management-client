@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const RegisterPage = () => {
+
+    const {emailRegister} = useContext(AuthContext);
 
     const handleRegister = (e) =>{
         e.preventDefault();
@@ -10,6 +14,15 @@ const RegisterPage = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, photoUrl, email, password);
+
+
+        emailRegister(email, password)
+        .then(data =>{
+            console.log(data);
+        })
+        .catch(err =>{
+            console.log(err);
+        })
 
     }
 
