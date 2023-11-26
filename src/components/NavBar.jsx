@@ -17,7 +17,7 @@ const NavBar = () => {
       </li>
 
       <li>
-        <NavLink to={"/"}>Teach On Edutrack</NavLink>
+        <NavLink to={"/join-teacher"}>Teach On Edutrack</NavLink>
       </li>
     </>
   );
@@ -66,9 +66,9 @@ const NavBar = () => {
         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-72 space-y-2"
       >
         <p className="text-center text-xl font-bold">{user?.displayName || "no name"}</p>
-        <li>
+        <Link to={'/dashboard'}>
           <a>Dashboard</a>
-        </li>
+        </Link>
         <li onClick={logOut}>
           <a>Logout</a>
         </li>

@@ -5,7 +5,7 @@ const TeacherJoin = () => {
     return (
         <div className='my-10 space-y-4'>
             <h1 className='text-center text-3xl font-black'>Join Us Today</h1>
-             <div className='flex justify-center items-center gap-5'>
+             <div className='flex flex-wrap lg:flex-nowrap justify-center items-center gap-5'>
             <div className='w-full'>
                 <img src={teacherImg} alt="" className='w-2/3 mx-auto' />
             </div>
