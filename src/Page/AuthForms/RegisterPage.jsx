@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { updateProfile } from "firebase/auth";
 
 const RegisterPage = () => {
-
+    const axiosPublic = useAxiosPublic();
     const {emailRegister} = useContext(AuthContext);
 
     const handleRegister = (e) =>{
@@ -19,6 +21,21 @@ const RegisterPage = () => {
         emailRegister(email, password)
         .then(data =>{
             console.log(data);
+            if(data.user){
+                updateProfile(data.user, {
+                    displayName: name,
+                    photoURL: photoUrl
+                })
+                .then(res => console.log("updated the profile"));
+            }
+            axiosPublic.post('/users', {name, email})
+            .then(data  => {
+                console.log(data);
+            })
+            .catch(err =>{
+                console.log(err);
+            })
+            
         })
         .catch(err =>{
             console.log(err);

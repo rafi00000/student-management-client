@@ -7,6 +7,7 @@ import TeacherForm from "../Page/JoiningForm/Join_teacher/TeacherForm";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoutes from './../AuthGaurds/PrivateRoutes';
 import MyEnrolled from "../Page/MyEnrolled Class/MyEnrolled";
+import TeacherReq from "../Page/Teacher Req/TeacherReq";
 
 const routes = createBrowserRouter([
     {
@@ -39,6 +40,13 @@ const routes = createBrowserRouter([
             {
                 path: 'my-enrolled-class',
                 element: <MyEnrolled></MyEnrolled>
+            },
+            {
+                path: 'teacher-req',
+                element: <TeacherReq></TeacherReq>
+            },
+            {
+                path: ''
             }
         ]
     }
