@@ -3,6 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import HomePage from "../Page/HomePage/HomePage";
 import LoginPage from "../Page/AuthForms/LoginPage";
 import RegisterPage from "../Page/AuthForms/RegisterPage";
+import TeacherForm from "../Page/JoiningForm/Join_teacher/TeacherForm";
 
 const routes = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <RegisterPage></RegisterPage>
+            },
+            {
+                path: 'join-teacher',
+                element: <TeacherForm></TeacherForm>
             }
         ]
     },

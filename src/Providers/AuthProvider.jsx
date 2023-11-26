@@ -10,7 +10,7 @@ import { auth } from "../../firebase.config";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(location);
+  const [loading, setLoading] = useState(true);
   const emailRegister = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -27,11 +27,12 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unSubscribe();
   });
 
-  const authInfo = { emailRegister, user, logIn, logOut };
+  const authInfo = { emailRegister, user, logIn, logOut, loading };
   return (
     <AuthContext.Provider value={authInfo}>
         {children}

@@ -1,9 +1,16 @@
+import Banner from "./Home_component/Banner";
+import Partners from './Home_component/Partners';
+import PopularCourse from './Home_component/PopularCourse';
+import TeacherJoin from './Home_component/TeacherJoin';
 
 const HomePage = () => {
 
     return (
         <div>
-            <h1>this is home page</h1>
+            <Banner></Banner>
+            <Partners></Partners>
+            <PopularCourse></PopularCourse>
+            <TeacherJoin></TeacherJoin>
         </div>
     );
 };
