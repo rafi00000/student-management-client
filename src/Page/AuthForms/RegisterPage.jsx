@@ -15,7 +15,6 @@ const RegisterPage = () => {
         const photoUrl = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photoUrl, email, password);
 
 
         emailRegister(email, password)
@@ -28,7 +27,8 @@ const RegisterPage = () => {
                 })
                 .then(res => console.log("updated the profile"));
             }
-            axiosPublic.post('/users', {name, email})
+
+            axiosPublic.post('/users', {name, email, role: "student"})
             .then(data  => {
                 console.log(data);
             })

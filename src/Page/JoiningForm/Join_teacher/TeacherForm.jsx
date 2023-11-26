@@ -16,7 +16,7 @@ const TeacherForm = () => {
         const experience = form.experience.value;
         const title = form.title.value;
         const category = form.category.value;
-        const teacherInfo = {name, url, experience, title, category, role: "user"};
+        const teacherInfo = {name, url, experience, title, category, email: user.email, userID: user._id, status: 'pending'};
 
         axiosPublic.post('/teacher-req', teacherInfo)
         .then(res => {
@@ -41,9 +41,9 @@ const TeacherForm = () => {
             <div className="form-control">
                 <label>Experience</label>
                 <select name="experience" className="input input-bordered">
-                    <option value="1">Beginner</option>
-                    <option value="2">Experienced</option>
-                    <option value="3">Some Idea</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="experienced">Experienced</option>
+                    <option value="someIdea">Some Idea</option>
                 </select>
             </div>
 

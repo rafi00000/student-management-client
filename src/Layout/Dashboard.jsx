@@ -73,6 +73,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="w-full py-10">
+        <h1 className="text-center font-bold text-5xl uppercase underline mb-10">Dashboard</h1>
         <Outlet></Outlet>
       </div>
     </div>
