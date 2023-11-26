@@ -8,6 +8,7 @@ import Dashboard from "../Layout/Dashboard";
 import PrivateRoutes from './../AuthGaurds/PrivateRoutes';
 import MyEnrolled from "../Page/MyEnrolled Class/MyEnrolled";
 import TeacherReq from "../Page/Teacher Req/TeacherReq";
+import AllUsers from "../Page/Allusers/AllUsers";
 
 const routes = createBrowserRouter([
     {
@@ -46,7 +47,8 @@ const routes = createBrowserRouter([
                 element: <TeacherReq></TeacherReq>
             },
             {
-                path: ''
+                path: 'users',
+                element: <AllUsers></AllUsers>
             }
         ]
     }

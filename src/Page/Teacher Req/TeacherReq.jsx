@@ -16,6 +16,9 @@ const TeacherReq = () => {
   console.log(teacherReq);
 
   // handling the btn actions
+
+  
+
   const handleConfirm = (email) => {
     console.log(email);
     axiosSecure.patch(`/admin/teacher/${email}`).then((res) => {
@@ -81,12 +84,14 @@ const TeacherReq = () => {
               {/* action btn */}
               <th className="space-x-2">
                 <button
+                    disabled={req.status !== "pending"}
                   className="btn bg-green-500 hover:bg-green-600"
                   onClick={() => handleConfirm(req.email)}
                 >
                   <FaThumbsUp className="text-white"></FaThumbsUp>
                 </button>
                 <button
+                disabled={req.status !== "pending"}
                   className="btn bg-red-500 hover:bg-red-600"
                   onClick={() => handleReject(req.email)}
                 >
