@@ -9,6 +9,8 @@ import PrivateRoutes from './../AuthGaurds/PrivateRoutes';
 import MyEnrolled from "../Page/MyEnrolled Class/MyEnrolled";
 import TeacherReq from "../Page/Teacher Req/TeacherReq";
 import AllUsers from "../Page/Allusers/AllUsers";
+import MyProfile from "../Page/MyProfile/MyProfile";
+import AddClass from "../Page/Add-class/AddClass";
 
 const routes = createBrowserRouter([
     {
@@ -49,6 +51,14 @@ const routes = createBrowserRouter([
             {
                 path: 'users',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'add-class',
+                element: <AddClass></AddClass>
+            },
+            {
+                path: 'profile',
+                element: <MyProfile></MyProfile>
             }
         ]
     }

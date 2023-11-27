@@ -32,7 +32,7 @@ const AllUsers = () => {
       </form>
 
       {/* table */}
-      <table className="table w-full">
+      <table className="table w-full table-fixed ">
         {/* head */}
         <thead>
           <tr>
@@ -45,17 +45,18 @@ const AllUsers = () => {
         <tbody>
           {users.map((user) => (
             <tr key={user._id} className="">
+              {console.log(user)}
               <td className="border border-black">
                 <div className="flex items-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <img src="image" alt="Avatar Tailwind CSS Component" />
+                      <img src={user?.image} alt="Avatar Tailwind CSS Component" />
                     </div>
                   </div>
                 </div>
               </td>
-              <td className="border border-black">title</td>
-              <td className="border border-black">Category</td>
+              <td className="border border-black">{user?.name}</td>
+              <td className="border border-black">{user.email}</td>
               <td className="border border-black space-x-2">
                 <button disabled={user.role === "admin"} onClick={() =>handleMakeAdmin(user._id)} className="btn bg-green-500 hover:bg-green-600">
                   <FaUsers></FaUsers>

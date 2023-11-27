@@ -15,6 +15,7 @@ const RegisterPage = () => {
         const photoUrl = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
+        const number = form.number.value;
 
 
         emailRegister(email, password)
@@ -28,7 +29,7 @@ const RegisterPage = () => {
                 .then(res => console.log("updated the profile"));
             }
 
-            axiosPublic.post('/users', {name, email, role: "student"})
+            axiosPublic.post('/users', {name, email, role: "student", image: photoUrl, number})
             .then(data  => {
                 console.log(data);
             })
@@ -62,6 +63,10 @@ const RegisterPage = () => {
                 <div className="form-control">
                     <label>Password</label>
                     <input type="password" className="input input-bordered" name="password"/>
+                </div>
+                <div className="form-control">
+                    <label>Contact Number</label>
+                    <input type="text" className="input input-bordered" name="number"/>
                 </div>
                 <div>
                     <p className="text-center"><button className="btn btn-outline">Register</button></p>
