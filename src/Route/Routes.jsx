@@ -11,6 +11,7 @@ import TeacherReq from "../Page/Teacher Req/TeacherReq";
 import AllUsers from "../Page/Allusers/AllUsers";
 import MyProfile from "../Page/MyProfile/MyProfile";
 import AddClass from "../Page/Add-class/AddClass";
+import AllClass from "../Page/All Class/allClass";
 
 const routes = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ const routes = createBrowserRouter([
             {
                 path: 'profile',
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path: 'all-class', 
+                element: <AllClass></AllClass>
             }
         ]
     }
