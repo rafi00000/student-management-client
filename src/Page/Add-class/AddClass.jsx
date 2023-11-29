@@ -28,7 +28,7 @@ const AddClass = () => {
             name: data.name,
             email: data.email,
             description: data.description, 
-            price: data.price,
+            price: parseFloat(data.price),
             title: data.title,
             image: res.data.data.display_url,
             status: "pending"
@@ -42,8 +42,8 @@ const AddClass = () => {
             }
           })
         }
-
       }
+
   return (
     <div>
       <form

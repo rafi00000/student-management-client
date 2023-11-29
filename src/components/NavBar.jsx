@@ -13,7 +13,7 @@ const NavBar = () => {
       </li>
 
       <li>
-        <NavLink to={"/"}>All classes</NavLink>
+        <NavLink to={"/all-class"}>All classes</NavLink>
       </li>
 
       <li>
@@ -23,7 +23,7 @@ const NavBar = () => {
   );
   
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-yellow-300">
       <div className="navbar-start">
         <div className="drawer drawer-end lg:hidden">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

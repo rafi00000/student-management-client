@@ -16,6 +16,7 @@ import MyClass from "../Page/My Class/MyClass";
 import UpdateClass from "../Page/My Class/UpdateClass";
 import ClassDetails from "../Page/ClassDetails/ClassDetails";
 import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import AllClassStudent from "../Page/All Class_student/AllClassStudent";
 
 const axiosPrivate = useAxiosPrivate();
 
@@ -39,6 +40,10 @@ const routes = createBrowserRouter([
             {
                 path: 'join-teacher',
                 element: <TeacherForm></TeacherForm>
+            },
+            {
+                path: '/all-class',
+                element: <AllClassStudent></AllClassStudent>
             }
         ]
     },

@@ -80,7 +80,7 @@ const Dashboard = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 min-h-full bg-yellow-200 lg:w-1/4 space-y-3">
+            <ul className="menu p-4 min-h-full bg-yellow-200 w-2/3 lg:w-1/4 space-y-3">
               {navItems}
             </ul>
           </div>

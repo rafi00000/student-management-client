@@ -1,7 +1,7 @@
 import { FaBitbucket, FaPen } from "react-icons/fa";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const MyClassCard = ({ card, refetch }) => {
   console.log(card);
@@ -9,14 +9,16 @@ const MyClassCard = ({ card, refetch }) => {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
-  // const handleUpdate = (id) => {
-  //   console.log(id);
-  //   axiosPrivate.get(`/classes/single/${id}`).then((res) => {
-  //     console.log(res.data);
-  //   });
-  // };
-
-  const {register, handleSubmit} = useForm();
+  const handleDelete = async(id) =>{
+    console.log(id);
+    
+   const res = await axiosPrivate.delete(`/class/${id}`);
+   console.log(res);
+   if(res.data){
+    toast.success("Deleted successfully")
+    refetch();
+   }
+  }
 
   return (
     <div className="shadow-xl rounded-md p-5 border space-y-3">
@@ -29,7 +31,7 @@ const MyClassCard = ({ card, refetch }) => {
           >
             <FaPen />
           </button>
-          <button className="btn">
+          <button className="btn" onClick={() => handleDelete(_id)}>
             <FaBitbucket />
           </button>
         </div>
@@ -48,6 +50,7 @@ const MyClassCard = ({ card, refetch }) => {
       <p className="text-center">
         <button className="btn btn-outline" onClick={() => navigate(`/dashboard/class/details/${_id}`)}>See Details</button>
       </p>
+      <Toaster></Toaster>
     </div>
   );
 };
