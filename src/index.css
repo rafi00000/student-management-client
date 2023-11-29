@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
 :root{
     --primary-bg: #000000,
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+*{
+    font-family: 'Nova Square', sans-serif;
+}

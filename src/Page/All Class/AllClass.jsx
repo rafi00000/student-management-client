@@ -4,7 +4,7 @@ import { FaBitbucket, FaThumbsUp } from 'react-icons/fa';
 
 const AllClass = () => {
   const axiosPrivate = useAxiosPrivate();
-  const { data: classes = [] } = useQuery({
+  const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
       const res = await axiosPrivate.get("/classes");
@@ -12,6 +12,27 @@ const AllClass = () => {
     },
   });
   console.log(classes);
+  
+
+    // action button work here
+  const handleAccept = (email)  =>{
+    axiosPrivate.patch(`/add-class-action/${email}`, {status: "accepted"})
+    .then(res =>{
+        if(res.data.modifiedCount){
+            alert("accept successful")
+            refetch();
+        }
+    })
+  }
+
+  const handleReject = (email) =>{
+    axiosPrivate.patch(`/add-class-action/${email}`, {status: "rejected"})
+    .then(res =>{
+        if(res.data.modifiedCount){
+            alert("rejection successful")
+        }
+    })
+  }
 
   return (
     <div>
@@ -28,6 +49,7 @@ const AllClass = () => {
               <th>Description</th>
               <th>status</th>
               <th>Actions</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -41,26 +63,27 @@ const AllClass = () => {
                   </div>
                 </td>
                 <td className="border border-black">
-                  Zemlak, Daniel and Leannon
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
+                  {
+                    item.title
+                  }
                 </td>
-                <td className="border border-black">Purple</td>
+                <td className="border border-black">{item.email}</td>
                 <td className="border border-black">
-                  <p>{item.description.length > 15 ? item.description.slice(0, 15) : item.description}</p>
+                  <p>{item.description?.length > 15 ? item.description.slice(0, 15) : item.description}</p>
                 </td>
                 <td className="border border-black">
                   <p>{item.status}</p>
                 </td>
                 <td className="border border-black space-x-4 text-center">
-                  <button className="btn btn-square">
+                  <button className="btn btn-square" disabled={item.status !== "pending"} onClick={() =>handleAccept(item.email)}>
                     <FaThumbsUp></FaThumbsUp>
                   </button>
-                  <button className="btn btn-square">
+                  <button className="btn btn-square" disabled={item.status !== "pending"} onClick={() => handleReject(item.email)}>
                     <FaBitbucket></FaBitbucket>
                   </button>
+                </td>
+                <td className="border border-black">
+                  <button className="btn btn-sm bg-yellow-300 hover:bg-yellow-400" disabled={item.status !== "accepted"}>See Progress</button>
                 </td>
               </tr>
               )}

@@ -12,6 +12,12 @@ import AllUsers from "../Page/Allusers/AllUsers";
 import MyProfile from "../Page/MyProfile/MyProfile";
 import AddClass from "../Page/Add-class/AddClass";
 import AllClass from "../Page/All Class/allClass";
+import MyClass from "../Page/My Class/MyClass";
+import UpdateClass from "../Page/My Class/UpdateClass";
+import ClassDetails from "../Page/ClassDetails/ClassDetails";
+import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+
+const axiosPrivate = useAxiosPrivate();
 
 const routes = createBrowserRouter([
     {
@@ -64,6 +70,19 @@ const routes = createBrowserRouter([
             {
                 path: 'all-class', 
                 element: <AllClass></AllClass>
+            },
+            {
+                path: 'my-class',
+                element: <MyClass></MyClass>
+            },
+            {
+                path: 'update/:id',
+                element: <UpdateClass></UpdateClass>
+            },
+            {
+                path: 'class/details/:id',
+                loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
+                element: <ClassDetails></ClassDetails>
             }
         ]
     }

@@ -87,7 +87,7 @@ const Dashboard = () => {
         </div>
 
         <div className=" w-full ">
-          <h3 className="text-center text-2xl font-bold">Dashboard </h3>
+          <h3 className="text-2xl font-bold">Dashboard</h3>
         </div>
       </div>
       {/* 2nd flex item */}

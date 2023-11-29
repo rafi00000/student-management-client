@@ -30,7 +30,8 @@ const AddClass = () => {
             description: data.description, 
             price: data.price,
             title: data.title,
-            image: res.data.data.display_url
+            image: res.data.data.display_url,
+            status: "pending"
           };
 
           axiosPublic.post('/add-class', menuItem)
