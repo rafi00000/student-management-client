@@ -17,6 +17,7 @@ import UpdateClass from "../Page/My Class/UpdateClass";
 import ClassDetails from "../Page/ClassDetails/ClassDetails";
 import useAxiosPrivate from "../Hooks/useAxiosPrivate";
 import AllClassStudent from "../Page/All Class_student/AllClassStudent";
+import ClassEnroll from "../Page/ClassEnroll/ClassEnroll";
 
 const axiosPrivate = useAxiosPrivate();
 
@@ -63,6 +64,11 @@ const routes = createBrowserRouter([
             {
                 path: 'users',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'class-enroll/:id',
+                loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
+                element: <ClassEnroll></ClassEnroll>
             },
             {
                 path: 'add-class',

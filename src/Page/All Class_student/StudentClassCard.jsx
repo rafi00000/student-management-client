@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 const StudentClassCard = ({ card }) => {
   console.log(card);
-  const { image, price, email, title, name, description } = card;
+  const { image, price, email, title, name, description, _id } = card;
+  
 
   return (
     <div className="border space-y-3 p-5 rounded-md">
@@ -12,6 +15,7 @@ const StudentClassCard = ({ card }) => {
       </div>
       <p>Email: {email}</p>
       <p>Description: {description}</p>
+      <p className="text-center"><Link to={`/dashboard/class-enroll/${_id}`}><button className="btn btn-outline">Enroll</button></Link></p>
     </div>
   );
 };

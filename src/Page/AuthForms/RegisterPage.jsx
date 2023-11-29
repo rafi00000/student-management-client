@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
     const axiosPublic = useAxiosPublic();
     const {emailRegister} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleRegister = (e) =>{
         e.preventDefault();
@@ -26,7 +28,10 @@ const RegisterPage = () => {
                     displayName: name,
                     photoURL: photoUrl
                 })
-                .then(res => console.log("updated the profile"));
+                .then(res => {
+                    toast.success("Created user successfully")
+                    navigate("/")
+                });
             }
 
             axiosPublic.post('/users', {name, email, role: "student", image: photoUrl, number})
