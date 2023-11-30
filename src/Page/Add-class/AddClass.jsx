@@ -25,12 +25,12 @@ const AddClass = () => {
 
         if(res.data.success){
           const menuItem = {
-            name: data.name,
-            email: data.email,
-            description: data.description, 
-            price: parseFloat(data.price),
-            title: data.title,
-            image: res.data.data.display_url,
+            name: data?.name,
+            email: data?.email,
+            description: data?.description, 
+            price: parseFloat(data?.price),
+            title: data?.title,
+            image: res?.data?.data?.display_url,
             status: "pending"
           };
 

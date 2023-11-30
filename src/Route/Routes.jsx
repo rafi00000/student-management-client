@@ -18,6 +18,7 @@ import ClassDetails from "../Page/ClassDetails/ClassDetails";
 import useAxiosPrivate from "../Hooks/useAxiosPrivate";
 import AllClassStudent from "../Page/All Class_student/AllClassStudent";
 import ClassEnroll from "../Page/ClassEnroll/ClassEnroll";
+import Payment from "../Page/Payment/Payment";
 
 const axiosPrivate = useAxiosPrivate();
 
@@ -94,6 +95,11 @@ const routes = createBrowserRouter([
                 path: 'class/details/:id',
                 loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
                 element: <ClassDetails></ClassDetails>
+            },
+            {
+                path: 'payment/:id',
+                loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
+                element: <Payment></Payment>
             }
         ]
     }

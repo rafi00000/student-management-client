@@ -1,9 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ClassEnroll = () => {
     const {data} = useLoaderData();
     console.log(data);
-    const {name, image, price, title, status, email, description} = data;
+    const {name, image, price, title, status, email, description, _id} = data;
 
     return (
         <div>
@@ -19,6 +19,8 @@ const ClassEnroll = () => {
                 <p>Status: {status}</p>
             </div>
             <p className="">Description: {description}</p>
+
+            <p className="text-center "><Link to={`/dashboard/payment/${_id}`}><button className="btn btn-outline w-40">Pay</button></Link></p>
         </div>
     );
 };
