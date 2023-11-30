@@ -70,6 +70,11 @@ const CheckOutForm = () => {
         } ;
         console.log(paymentInfo);
         
+        axiosPrivate.patch("/enroll", {enroll: 1, id: data?._id})
+        .then(res =>{
+          console.log(res.data);
+        })
+
         axiosPrivate.post("/payment", paymentInfo)
         .then(res => {
           console.log(res.data);

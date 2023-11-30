@@ -31,7 +31,9 @@ const AddClass = () => {
             price: parseFloat(data?.price),
             title: data?.title,
             image: res?.data?.data?.display_url,
-            status: "pending"
+            status: "pending",
+            enroll: 0,
+            
           };
 
           axiosPublic.post('/add-class', menuItem)
