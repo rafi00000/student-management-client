@@ -9,16 +9,16 @@ const MyClassCard = ({ card, refetch }) => {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
-  const handleDelete = async(id) =>{
+  const handleDelete = async (id) => {
     console.log(id);
-    
-   const res = await axiosPrivate.delete(`/class/${id}`);
-   console.log(res);
-   if(res.data){
-    toast.success("Deleted successfully")
-    refetch();
-   }
-  }
+
+    const res = await axiosPrivate.delete(`/class/${id}`);
+    console.log(res);
+    if (res.data) {
+      toast.success("Deleted successfully");
+      refetch();
+    }
+  };
 
   return (
     <div className="shadow-xl rounded-md p-5 border space-y-3">
@@ -48,7 +48,12 @@ const MyClassCard = ({ card, refetch }) => {
       </div>
       <p>Description: {description}</p>
       <p className="text-center">
-        <button className="btn btn-outline" onClick={() => navigate(`/dashboard/class/details/${_id}`)}>See Details</button>
+        <button
+          className="btn btn-outline"
+          onClick={() => navigate(`/dashboard/my-class/${_id}`)}
+        >
+          See Details
+        </button>
       </p>
       <Toaster></Toaster>
     </div>

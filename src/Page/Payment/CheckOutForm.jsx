@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosPrivate from './../../Hooks/useAxiosPrivate';
 import { AuthContext } from './../../Providers/AuthProvider';
 
@@ -13,6 +13,8 @@ const CheckOutForm = () => {
     const [clientSecret, setClientSecret] = useState(null);
     const {user} = useContext(AuthContext);
     const [transactionId, setTransactionId] = useState(null);
+    const navigate = useNavigate();
+    console.log(data);
 
     useEffect(() =>{
       axiosPrivate.post('/create-payment-intent', {price: data.price})
@@ -52,19 +54,31 @@ const CheckOutForm = () => {
     else{
       console.log("payment intent", paymentIntent);
       if(paymentIntent.status === "succeeded"){
-        toast.success("Payment Successful");
         setTransactionId(paymentIntent.id);
-
+        toast.success("Payment Successful");
+        
         // now saving it to the database
         const paymentInfo= {
           email: user.email,
           price: data.price,
           date: new Date(),
           className: data.title,
-          TeacherMail: data.email,
-          CourseId: data._id
+          teacherMail: data.email,
+          classId: data._id, 
+          image: data.image,
+          teacherName: data.name
         } ;
         console.log(paymentInfo);
+        
+        axiosPrivate.post("/payment", paymentInfo)
+        .then(res => {
+          console.log(res.data);
+          toast.success("Saved to database");
+          setTimeout(()=>{
+            navigate("/dashboard/my-enrolled-class");
+          }, 2000)
+
+        })
       }
     }
   };

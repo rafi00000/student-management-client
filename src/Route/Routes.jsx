@@ -5,7 +5,7 @@ import LoginPage from "../Page/AuthForms/LoginPage";
 import RegisterPage from "../Page/AuthForms/RegisterPage";
 import TeacherForm from "../Page/JoiningForm/Join_teacher/TeacherForm";
 import Dashboard from "../Layout/Dashboard";
-import PrivateRoutes from './../AuthGaurds/PrivateRoutes';
+import PrivateRoutes from "./../AuthGaurds/PrivateRoutes";
 import MyEnrolled from "../Page/MyEnrolled Class/MyEnrolled";
 import TeacherReq from "../Page/Teacher Req/TeacherReq";
 import AllUsers from "../Page/Allusers/AllUsers";
@@ -23,87 +23,93 @@ import Payment from "../Page/Payment/Payment";
 const axiosPrivate = useAxiosPrivate();
 
 const routes = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainLayout></MainLayout>,
-        children: [
-            {
-                path: '/',
-                element: <HomePage></HomePage>
-            },
-            {
-                path: '/login', 
-                element: <LoginPage></LoginPage>
-            },
-            {
-                path: '/register',
-                element: <RegisterPage></RegisterPage>
-            },
-            {
-                path: 'join-teacher',
-                element: <TeacherForm></TeacherForm>
-            },
-            {
-                path: '/all-class',
-                element: <AllClassStudent></AllClassStudent>
-            }
-        ]
-    },
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <HomePage></HomePage>,
+      },
+      {
+        path: "/login",
+        element: <LoginPage></LoginPage>,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage></RegisterPage>,
+      },
+      {
+        path: "join-teacher",
+        element: <TeacherForm></TeacherForm>,
+      },
+      {
+        path: "/all-class",
+        element: <AllClassStudent></AllClassStudent>,
+      },
+    ],
+  },
 
-    {
-        path: '/dashboard',
-        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
-        children:[
-            {
-                path: 'my-enrolled-class',
-                element: <MyEnrolled></MyEnrolled>
-            },
-            {
-                path: 'teacher-req',
-                element: <TeacherReq></TeacherReq>
-            },
-            {
-                path: 'users',
-                element: <AllUsers></AllUsers>
-            },
-            {
-                path: 'class-enroll/:id',
-                loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
-                element: <ClassEnroll></ClassEnroll>
-            },
-            {
-                path: 'add-class',
-                element: <AddClass></AddClass>
-            },
-            {
-                path: 'profile',
-                element: <MyProfile></MyProfile>
-            },
-            {
-                path: 'all-class', 
-                element: <AllClass></AllClass>
-            },
-            {
-                path: 'my-class',
-                element: <MyClass></MyClass>
-            },
-            {
-                path: 'update/:id',
-                element: <UpdateClass></UpdateClass>
-            },
-            {
-                path: 'class/details/:id',
-                loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
-                element: <ClassDetails></ClassDetails>
-            },
-            {
-                path: 'payment/:id',
-                loader: ({params}) => axiosPrivate.get(`/classes/single/${params.id}`),
-                element: <Payment></Payment>
-            }
-        ]
-    }
-
-])
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "my-enrolled-class",
+        element: <MyEnrolled></MyEnrolled>,
+      },
+      {
+        path: "teacher-req",
+        element: <TeacherReq></TeacherReq>,
+      },
+      {
+        path: "users",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "class-enroll/:id",
+        loader: ({ params }) =>
+          axiosPrivate.get(`/classes/single/${params.id}`),
+        element: <ClassEnroll></ClassEnroll>,
+      },
+      {
+        path: "add-class",
+        element: <AddClass></AddClass>,
+      },
+      {
+        path: "profile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "all-class",
+        element: <AllClass></AllClass>,
+      },
+      {
+        path: "my-class",
+        element: <MyClass></MyClass>,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateClass></UpdateClass>,
+      },
+      {
+        path: "my-class/:id",
+        loader: ({ params }) =>
+          axiosPrivate.get(`/classes/single/${params.id}`),
+        element: <ClassDetails></ClassDetails>,
+      },
+      {
+        path: "payment/:id",
+        loader: ({ params }) =>
+          axiosPrivate.get(`/classes/single/${params.id}`),
+        element: <Payment></Payment>,
+      },
+    ],
+  },
+]);
 
 export default routes;
