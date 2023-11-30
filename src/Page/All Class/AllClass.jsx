@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
-import { FaBitbucket, FaThumbsUp } from 'react-icons/fa';
+import { FaBitbucket, FaThumbsUp } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const AllClass = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -12,27 +13,29 @@ const AllClass = () => {
     },
   });
   console.log(classes);
-  
 
-    // action button work here
-  const handleAccept = (email)  =>{
-    axiosPrivate.patch(`/add-class-action/${email}`, {status: "accepted"})
-    .then(res =>{
-        if(res.data.modifiedCount){
-            alert("accept successful")
-            refetch();
+  // action button work here
+  const handleAccept = (id) => {
+    axiosPrivate
+      .patch(`/add-class-action/${id}`, { status: "accepted" })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          toast.success("accept successful");
+          refetch();
         }
-    })
-  }
+      });
+  };
 
-  const handleReject = (email) =>{
-    axiosPrivate.patch(`/add-class-action/${email}`, {status: "rejected"})
-    .then(res =>{
-        if(res.data.modifiedCount){
-            alert("rejection successful")
+  const handleReject = (id) => {
+    axiosPrivate
+      .patch(`/add-class-action/${id}`, { status: "rejected" })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          toast.success("rejection successful");
+          refetch();
         }
-    })
-  }
+      });
+  };
 
   return (
     <div>
@@ -53,7 +56,8 @@ const AllClass = () => {
             </tr>
           </thead>
           <tbody>
-            {classes.map((item) => <tr key={item._id}>
+            {classes.map((item) => (
+              <tr key={item._id}>
                 <td className="border border-black">
                   <div className="avatar">
                     {console.log()}
@@ -62,31 +66,44 @@ const AllClass = () => {
                     </div>
                   </div>
                 </td>
-                <td className="border border-black">
-                  {
-                    item.title
-                  }
-                </td>
+                <td className="border border-black">{item.title}</td>
                 <td className="border border-black">{item.email}</td>
                 <td className="border border-black">
-                  <p>{item.description?.length > 15 ? item.description.slice(0, 15) : item.description}</p>
+                  <p>
+                    {item.description?.length > 15
+                      ? item.description.slice(0, 15)
+                      : item.description}
+                  </p>
                 </td>
                 <td className="border border-black">
                   <p>{item.status}</p>
                 </td>
                 <td className="border border-black space-x-4 text-center">
-                  <button className="btn btn-square" disabled={item.status !== "pending"} onClick={() =>handleAccept(item.email)}>
+                  <button
+                    className="btn btn-square"
+                    disabled={item.status !== "pending"}
+                    onClick={() => handleAccept(item?._id)}
+                  >
                     <FaThumbsUp></FaThumbsUp>
                   </button>
-                  <button className="btn btn-square" disabled={item.status !== "pending"} onClick={() => handleReject(item.email)}>
+                  <button
+                    className="btn btn-square"
+                    disabled={item.status !== "pending"}
+                    onClick={() => handleReject(item?._id)}
+                  >
                     <FaBitbucket></FaBitbucket>
                   </button>
                 </td>
                 <td className="border border-black">
-                  <button className="btn btn-sm bg-yellow-300 hover:bg-yellow-400" disabled={item.status !== "accepted"}>See Progress</button>
+                  <button
+                    className="btn btn-sm bg-yellow-300 hover:bg-yellow-400"
+                    disabled={item.status !== "accepted"}
+                  >
+                    See Progress
+                  </button>
                 </td>
               </tr>
-              )}
+            ))}
           </tbody>
         </table>
       </div>
