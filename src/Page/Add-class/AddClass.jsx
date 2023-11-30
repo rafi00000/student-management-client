@@ -33,7 +33,7 @@ const AddClass = () => {
             image: res?.data?.data?.display_url,
             status: "pending",
             enroll: 0,
-            
+
           };
 
           axiosPublic.post('/add-class', menuItem)
@@ -57,7 +57,7 @@ const AddClass = () => {
         </p>
         <div className="form-control">
           <label>Title</label>
-          <input type="text" className="input input-bordered" {...register("title")}/>
+          <input type="text" className="input input-bordered" {...register("title")} required/>
         </div>
 
         <div className="form-control">
@@ -72,7 +72,7 @@ const AddClass = () => {
 
         <div className="form-control">
           <label>Price</label>
-          <input type="number" className="input input-bordered" {...register("price")}/>
+          <input type="number" className="input input-bordered" {...register("price")} required/>
         </div>
 
         <div className="form-control">
@@ -87,7 +87,7 @@ const AddClass = () => {
 
         <div className="form-control">
           <label>Image</label>
-          <input type="file" {...register("image")} />
+          <input type="file" {...register("image")} required />
         </div>
         <p className="my-3 text-center">
           <button className="btn btn-outline">Add Class</button>

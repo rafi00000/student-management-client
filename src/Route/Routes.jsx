@@ -20,6 +20,7 @@ import AllClassStudent from "../Page/All Class_student/AllClassStudent";
 import ClassEnroll from "../Page/ClassEnroll/ClassEnroll";
 import Payment from "../Page/Payment/Payment";
 import MyEnrolledDetail from "../Page/MyEnrolled Class/MyEnrolledDetail";
+import ErrorPage from "../Page/ErrorPage/ErrorPage";
 
 const axiosPrivate = useAxiosPrivate();
 
@@ -27,6 +28,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

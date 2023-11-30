@@ -30,7 +30,7 @@ const TeacherForm = () => {
             <h1 className="text-5xl text-center font-semibold font-mono">Join As Teacher</h1>
             <div className="form-control">
                 <label>Name</label>
-                <input type="text" className="input input-bordered" name="name" defaultValue={user?.displayName} />
+                <input type="text" className="input input-bordered" name="name" defaultValue={user?.displayName}  />
             </div>
             
             <div className="form-control">
@@ -49,7 +49,7 @@ const TeacherForm = () => {
 
             <div className="form-control">
                 <label>Title</label>
-                <input type="text" className="input input-bordered" name="title" />
+                <input type="text" className="input input-bordered" name="title" required />
             </div>
             
             <div className="form-control">
@@ -64,7 +64,7 @@ const TeacherForm = () => {
             </div>
 
             <div className="my-5">
-                <p className="text-center"><button className="btn btn-outline ">Submit for review</button></p>
+                <p className="text-center"><button className="btn btn-outline">Submit for review</button></p>
             </div>
         </form>
     );
