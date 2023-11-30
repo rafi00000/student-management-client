@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const { logIn, googleSignIn } = useContext(AuthContext);
@@ -17,35 +18,39 @@ const LoginPage = () => {
 
     logIn(email, password)
       .then((data) => {
-        console.log(data);
+        toast.success("login Successful");
         navigate("/");
       })
       .catch((err) => {
+        toast.error("Something went wrong");
         console.log(err);
       });
   };
 
   const handleGoogle = () => {
-    googleSignIn()
-    .then((result) => {
+    googleSignIn().then((result) => {
       const user = result.user;
       console.log(user);
+
       const userInfo = {
         email: user?.email,
         name: user?.displayName,
         role: "student",
       };
 
-      axiosPublic.post("/users", userInfo)
-      .then(res =>{
-        console.log(res.data);
-        navigate("/")
-      })
-      .catch(err => {
-        console.log(err);
-      })
-
-
+      axiosPublic.get(`/user/${user?.email}`).then((res) => {
+        if (!res.data.email) {
+          axiosPublic
+            .post("/users", userInfo)
+            .then((res) => {
+              console.log(res.data);
+              navigate("/");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
     });
   };
 

@@ -13,7 +13,7 @@ const useRole = () => {
             return res.data;
         }
     })
-    return [data?.role, isLoading];
+    return [data?.role, isLoading, data?.email];
 };
 
 export default useRole;
