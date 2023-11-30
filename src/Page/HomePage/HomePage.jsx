@@ -3,6 +3,8 @@ import Partners from './Home_component/Partners';
 import PopularCourse from './Home_component/PopularCourse';
 import Stats from "./Home_component/Stats";
 import TeacherJoin from './Home_component/TeacherJoin';
+import FaqSection from './Home_component/FaqSection';
+import OurTeachers from './Home_component/OurTeachers';
 
 const HomePage = () => {
 
@@ -13,6 +15,8 @@ const HomePage = () => {
             <PopularCourse></PopularCourse>
             <TeacherJoin></TeacherJoin>
             <Stats></Stats>
+            <OurTeachers></OurTeachers>
+            <FaqSection></FaqSection>
         </div>
     );
 };
